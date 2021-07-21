@@ -14,14 +14,17 @@ mongoose.Promise = global.Promise;
 mongoose
     .connect(mongoConnectStr, { 
         useNewUrlParser: true, 
-        useUnifiedTopology: true, 
+        useUnifiedTopology: true,
+        useCreateIndex: true,
         useFindAndModify: false 
     })
     .then(() => {
         console.log("Database connection Success!");
     })
-    .catch((err) => {
-        console.error("Mongo Connection Error", err);
+    .catch((error) => {
+        console.log("database connection failed. exiting now...");
+        console.error(error);
+        process.exit(1);
     });
 //************************************************* */
 
